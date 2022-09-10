@@ -1,0 +1,127 @@
+
+CREATE TABLE LOGIN_DETAILS(
+USER_ID NUMBER(8),
+USER_PASSWORD VARCHAR(50)NOT NULL,
+DESIGNATION VARCHAR(50) NOT NULL,
+CONSTRAINT pk_user_id PRIMARY KEY(USER_ID)
+);
+
+drop table login_details;
+
+CREATE SEQUENCE user_id_sequence
+START WITH 1000 INCREMENT BY 1;
+
+drop sequence user_id_sequence;
+
+
+INSERT INTO LOGIN_DETAILS VALUES(user_id_sequence.nextVal,'Pratik@123','Team Leader');
+INSERT INTO LOGIN_DETAILS VALUES(user_id_sequence.nextVal,'Sayali@123','Peoject Manager');
+INSERT INTO LOGIN_DETAILS VALUES(user_id_sequence.nextVal,'Shakti@123','HR');
+INSERT INTO LOGIN_DETAILS VALUES(user_id_sequence.nextVal,'Suraj@123','Interviewer');
+INSERT INTO LOGIN_DETAILS VALUES(user_id_sequence.nextVal,'Rahul@15','Team Leader');
+
+
+
+commit;
+
+
+CREATE TABLE project_details
+(
+project_id NUMBER(10) NOT NULL,
+project_name VARCHAR(20) NOT NULL,
+skill_1 VARCHAR(50) NOT NULL,
+skill_2 VARCHAR(50) NOT NULL,
+skill_3 VARCHAR(50) NOT NULL,
+budget number(10,2) not null,
+status VARCHAR(50) NOT NULL,
+CONSTRAINT pk_project_id PRIMARY KEY(project_id)
+);
+
+
+drop sequence project_id_sequence;
+
+CREATE SEQUENCE project_id_sequence
+START WITH 1000 INCREMENT By 1;
+
+
+INSERT INTO PROJECT_DETAILS VALUES(project_id_sequence.nextVal,'Google Pay' ,'Java','Python','.net',100000,'Ongoing');
+INSERT INTO PROJECT_DETAILS VALUES(project_id_sequence.nextVal,'Phone Pay' ,'Java','Python','.net',150000,'Completed');
+INSERT INTO PROJECT_DETAILS VALUES(project_id_sequence.nextVal,'Paytm' ,'Java','Python','.net',200000,'Ongoing');
+INSERT INTO PROJECT_DETAILS VALUES(project_id_sequence.nextVal,'SBI' ,'Java','Python','.net',500000,'Completed');
+INSERT INTO PROJECT_DETAILS VALUES(project_id_sequence.nextVal,'ICICI' ,'Java','Python','.net',1000000,'Pending');
+
+
+
+drop sequence project_id_sequence;
+
+
+
+CREATE TABLE EMPLOYEE_DETAILS(
+employee_id NUMBER(8),
+first_name VARCHAR(50)NOT NULL,
+last_name VARCHAR(50)NOT NULL,
+contact VARCHAR(50)NOT NULL,
+designation VARCHAR(50) NOT NULL,
+skill_1 VARCHAR(50) NOT NULL,
+skill_2 VARCHAR(50) NOT NULL,
+skill_3 VARCHAR(50) NOT NULL,
+bench VARCHAR(50)NOT NULL,
+salary NUMBER(10,2)NOT NULL,
+address VARCHAR(50)NOT NULL,
+city VARCHAR(40)NOT NULL,
+state VARCHAR(50)NOT NULL,
+pin_code NUMBER(10)NOT NULL,
+user_id NUMBER(8),
+project_id NUMBER(10),
+CONSTRAINT EMPLOYEE_DETAILS_employee_id_pk PRIMARY KEY(employee_id),
+CONSTRAINT EMPLOYEE_DETAILS_user_id_pk FOREIGN KEY(user_id) REFERENCES LOGIN_DETAILS(user_id),
+CONSTRAINT EMPLOYEE_DETAILS_project_id_pk FOREIGN KEY(project_id) REFERENCES PROJECT_DETAILS(project_id)
+);
+
+drop SEQUENCE employee_id_sequence;
+
+CREATE SEQUENCE employee_id_sequence
+START WITH 1000 INCREMENT BY 1;
+
+INSERT INTO EMPLOYEE_DETAILS VALUES(employee_id_sequence.nextVal,'Pratik','Ghadge','9322122196','Team Leader','Java','HTML','PYTHON','No',25000,'Nisarg','Mumbai','Maharashtra',400012,1000,1000);
+INSERT INTO EMPLOYEE_DETAILS VALUES(employee_id_sequence.nextVal,'Sayali','Shete','7894561235','Java Developer','HTML/CSS','JAVA','ANGULAR','Yes',27000,'Kalptaru','Navi-Mumbai','Maharashtra',400023,1001,1001);
+INSERT INTO EMPLOYEE_DETAILS VALUES(employee_id_sequence.nextVal,'Shakti','Patole','4561237892','Java Trainee','ADVANCE JAVA','HTML/CSS','PYTHON','Yes',27000,'Sadguru','Badlapur','Maharashtra',400043,1002,1002);
+INSERT INTO EMPLOYEE_DETAILS VALUES(employee_id_sequence.nextVal,'Suraj','Patel','7894561230','Python Developer','Java','HTML/CSS','PYTHON','No',27000,'Crescent Bay','Mumbai','Maharashtra',400013,1003,1003);
+
+
+
+CREATE TABLE JOB_REQUEST(
+job_id NUMBER(10),
+project_id NUMBER(10),
+project_name VARCHAR(50),
+budget number(10,2) NOT NULL,
+skill_1 VARCHAR(50)NOT NULL,
+skill_2 VARCHAR(50)NOT NULL,
+skill_3 VARCHAR(50)NOT NULL,
+count NUMBER(8)NOT NULL,
+CONSTRAINT job_id_pk PRIMARY KEY(job_id),
+CONSTRAINT project_id_pkk FOREIGN KEY(project_id) REFERENCES PROJECT_DETAILS(project_id)
+);
+
+CREATE SEQUENCE job_id_sequence
+START WITH 1000 INCREMENT BY 1;
+
+drop sequence job_id_sequence;
+
+INSERT INTO JOB_REQUEST VALUES(job_id_sequence.nextVal,1000,'Google Pay',20000,'Java','Python','SQL',5);
+INSERT INTO JOB_REQUEST VALUES(job_id_sequence.nextVal,1001,'Phone Pay',40000,'Python','JAva','SQL',5);
+INSERT INTO JOB_REQUEST VALUES(job_id_sequence.nextVal,1002,'Paytm',50000,'SQL','Angular','.net',4);
+INSERT INTO JOB_REQUEST VALUES(job_id_sequence.nextVal,1003,'SBI',60000,'Java','Python','SQL',5);
+
+select * from login_details;
+
+select *from project_details;
+
+
+drop table login_details;
+drop table project_details;
+drop table employee_details;
+drop table JOB_REQUEST;
+
+
+
