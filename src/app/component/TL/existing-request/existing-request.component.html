@@ -1,0 +1,29 @@
+<h2>All Job Requests</h2>
+<br>
+
+<table id="request">
+    <tr>
+        <th>Job Id</th>
+        <th>Skill 1</th>
+        <th>Skill 2</th>
+        <th>Skill 3</th>
+        <th>Count</th>
+        <th>Budget</th>
+    </tr>
+    
+    <tr *ngFor="let request of allRequests">
+        <td>{{request.job_id}}</td>
+        <td>{{request.skill_1}}</td>
+        <td>{{request.skill_2}}</td>
+        <td>{{request.skill_3}}</td>
+        <td>{{request.count}}</td>
+        <td>{{request.budget}}</td>
+        <td><button>Update</button></td>
+
+    </tr>
+
+
+</table>
+
+
+

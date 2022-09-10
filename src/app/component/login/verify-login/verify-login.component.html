@@ -1,0 +1,15 @@
+<h1>Login</h1>
+<div>
+    <form (submit) = "getLoginDetails()">
+        <label>User Id</label>
+        <input type="text" name="userId" [(ngModel)]="login.userId">
+        <br>
+
+        <label>Password</label>
+        <input type="password" name="userPassword" [(ngModel)]="login.userPassword">
+        <br>
+        <input type="submit" value="Login">
+
+        <h1></h1>
+    </form>
+</div>

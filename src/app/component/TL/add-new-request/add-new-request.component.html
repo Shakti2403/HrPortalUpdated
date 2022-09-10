@@ -1,0 +1,48 @@
+<h2>Add New Job Request</h2>
+<br>
+<div [hidden]="submitted">
+    <form (submit)="addNewJobRequest()">
+
+      <label for="skills">Skill 1:</label>
+      <select name="skill_1" id="skill_1" [(ngModel)]="jobrequest.skill_1">
+        <option value="" *ngFor="let c of skill_3_array" [ngValue]="c">{{c}}</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="c++">C++</option>
+      </select>
+
+      <label for="skills">Skill 2:</label>
+      <select name="skill_2" id="skill_2" [(ngModel)]="jobrequest.skill_2">
+        <option value="" *ngFor="let c of skill_3_array" [ngValue]="c">{{c}}</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="c++">C++</option>
+      </select>
+      
+      <label for="skills">Skill 3:</label>
+      <select name="skill_3" id="skill_3" [(ngModel)]="jobrequest.skill_3">
+        <option value="" *ngFor="let c of skill_3_array" [ngValue]="c">{{c}}</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="c++">C++</option>
+      </select>
+
+      <label>Count</label>
+      <input type="text" name="count" [(ngModel)]="jobrequest.count">
+  
+      <label>Budget</label>
+      <input type="text" name="budget" [(ngModel)]="jobrequest.budget">
+
+      <input type="submit" value="Add Request" class="back_to_to_home">
+
+      <button class="backtoHome" (click) = "backToAddNewRequest()" class="back_to_to_home">Back to Home</button>
+    </form> 
+  </div>
+
+  <div [hidden]="!submitted">
+    <h4>New Request Added Successfully!!!!</h4>
+    <button (click)="backToAddNewRequest()">Back To Add New Address Page</button>
+  </div>
+
+  
+
